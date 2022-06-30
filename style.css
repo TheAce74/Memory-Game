@@ -1,0 +1,172 @@
+/* Resets and General Styles */
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --pink: #e52165;
+  --raisin: #0d1137;
+  --grey-white: #f7d2e1;
+}
+
+body {
+  background-color: var(--grey-white);
+}
+
+img {
+  display: block;
+}
+
+h1 {
+  text-align: center;
+  font-weight: bolder;
+  font-size: 10vmin;
+  margin: .6em;
+}
+
+/* Memory Grid */
+.grid {
+  display: grid;
+  width: 85%;
+  margin: auto;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .6em;
+}
+
+.gridItem {
+  border: 4px solid var(--raisin);
+  background-color: var(--pink);
+  border-radius: 1em;
+  width: 98%;
+  height: 20vmin;
+}
+
+.gridItem p {
+  font-size: 6vmin;
+  margin: 1em;
+  font-weight: bold;
+  text-align: center;
+  pointer-events: none;
+}
+
+.gridItem img {
+  width: 17vmin;
+  margin: auto;
+  padding: .3em;
+  display: none;
+  pointer-events: none;
+}
+
+/* Moves Board */
+table {
+  border-collapse: collapse;
+  width: 70%;
+  margin: 3em auto;
+  text-align: center;
+}
+
+th {
+  background-color: var(--pink);
+  border: 3px solid var(--raisin);
+  font-size: 6vmin;
+  padding: .5em;
+}
+
+td {
+  border: 3px solid var(--raisin);
+  font-size: 6vmin;
+  padding: .5em;
+}
+
+/* Gotta code em all, JavaScript! */
+.flip {
+  animation: swivel .8s linear;
+}
+
+@keyframes swivel {
+  100% {
+    transform: perspective(1000px)
+               rotateY(180deg);
+  }
+}
+
+.flipBack {
+  animation: reverseSwivel .8s linear;
+}
+
+@keyframes reverseSwivel {
+  100% {
+    transform: perspective(1000px)
+               rotateY(-180deg);
+  }
+}
+
+/* Popup Section */
+.winModal,
+.lostModal {
+  width: 72vmin;
+  height: 82vmin;
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  transform: translateX(-50%)
+             translateY(-70%);
+  border: 3px groove var(--pink);
+  text-align: center;
+  padding: .8em;
+  background-color: var(--grey-white);
+}
+
+.lostModal {
+  border: 3px groove var(--raisin);
+  padding-top: 2.3em;
+}
+
+.winModal p,
+.lostModal p {
+  font-size: 6vmin;
+  font-weight: 600;
+  margin: .3em;
+  line-height: 1.5;
+}
+
+.winModal h2 {
+  font-size: 9vmin;
+  color: var(--pink);
+  margin-top: 1em;
+}
+
+.winModal h3,
+.lostModal h3 {
+  font-size: 8vmin;
+  margin: 1.2em;
+}
+
+.winModal button,
+.lostModal button {
+  background-color: var(--grey-white);
+  font-size: 5vmin;
+  padding: .4em;
+  border: 2px groove var(--pink);
+  font-weight: 600;
+  outline: none;
+}
+
+.winModal button:active,
+.lostModal button:active {
+  transform: scale(.9);
+}
+
+.winModal::backdrop {
+  background-color: var(--raisin, #0d1137);
+  opacity: .45;
+}
+
+.lostModal::backdrop {
+  background-color: var(--pink, #e52165);
+  opacity: .45;
+}
