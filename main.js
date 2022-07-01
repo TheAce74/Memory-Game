@@ -49,7 +49,7 @@ function showImage(e) {
 }
 //initialize count for switch statment
 let count = 0;
-//initialize variables to store previous card, it's image, text and title
+//initialize variables to store the previous card, it's image, text and title
 let former = '';
 let formerImage = '';
 let formerPara = '';
@@ -73,13 +73,13 @@ function checkMatch(gridItem, image, para, data) {
         gridItem.classList.add('check');
         former.classList.add('check');
       }
-      //if the titles are different, remove 'flip' class, so that the can swivel again like it did at the very start
+      //if the titles are different, remove 'flip' class, so that they can swivel again like they did at the very start
       else {
         setTimeout(() => {
           gridItem.classList.remove('flip');
           former.classList.remove('flip')
         }, 600);
-        //add a swivel action in the reverse direction as the last one
+        //add a swivel action in the reverse direction
         setTimeout(() => {
           gridItem.classList.add('flipBack');
           former.classList.add('flipBack');
@@ -114,6 +114,7 @@ function won() {
   if(array.length == 16) {
     setTimeout(() => {
       win.showModal();
+      //if the player opens all cards successfully on the 40th move, the lost modal should not appear cus he/she barely won
       lost.close();
     }, 810);
   }
@@ -129,7 +130,7 @@ function ohayo() {
   //close modals
   win.close();
   lost.close();
-  //remove flip class, remove images and display text; also cards are scattered to ensure that the same order is never repeated
+  //remove flip class, remove images and display text; also, cards are scattered to ensure that the same order is never repeated
   for(let card of cards) {
     card.classList.remove('flip');
     card.style.order = Math.floor(Math.random() * 17);
