@@ -25,8 +25,10 @@ for (let card of cards) {
 function flip(e) {
   e.target.classList.add('flip');
   e.target.addEventListener('animationstart', showImage);
-  //update number of moves
-  moves.textContent = Number(moves.textContent) + 1;
+  //update number of moves when the player clicks on a card with a hidden image and not when the player clicks on a card whose image is shown
+  if(!e.target.classList.contains('check')) {
+      moves.textContent = Number(moves.textContent) + 1;
+  }
   //if you run out of moves you lose 😝
   if(moves.textContent == total.textContent) {
     setTimeout(() => {
@@ -68,7 +70,7 @@ function checkMatch(gridItem, image, para, data) {
     break;
     
     case 1:
-      //on clicking the second time i.e. a new card, if the titles are the same for current and previous cards, add the check class(not really necessary, just makes sense)
+      //on clicking the second time i.e. a new card, if the titles are the same for current and previous cards, add the check class
       if(gridItem.title == formerTitle) {
         gridItem.classList.add('check');
         former.classList.add('check');
@@ -130,9 +132,10 @@ function ohayo() {
   //close modals
   win.close();
   lost.close();
-  //remove flip class, remove images and display text; also, cards are scattered to ensure that the same order is never repeated
+  //remove flip and check classes, remove images and display text; also, cards are scattered to ensure that the same order is never repeated
   for(let card of cards) {
     card.classList.remove('flip');
+    card.classList.remove('check');
     card.style.order = Math.floor(Math.random() * 17);
   }
   for (let image of images) {
